@@ -13,7 +13,10 @@ class SbisPage(BasePage):
 
     def click_button_contacts(self):
         element = self.driver.find_element(*SbisLocators.LOCATOR_BUTTON_CONTACTS)
-        return ActionChains(self.driver).move_to_element(element).click().perform()
+        
+        ActionChains(self.driver).move_to_element(element).click()
+        self.driver.implicitly_wait(10)
+        
 
         
 
