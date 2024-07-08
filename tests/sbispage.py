@@ -10,6 +10,9 @@ class SbisLocators:
     SILA_V_LUDIAH = (By.XPATH, "//p[contains(@class, 'tensor_ru-Index__card-title') and contains(@class, 'tensor_ru-pb-16') and contains(text(), 'Сила в людях')]")
     TENZOR_ABOUT = (By.CSS_SELECTOR, "a[href='/about'].tensor_ru-link.tensor_ru-Index__link")
     WORKING_BLOCK = (By.XPATH, "//h2[contains(@class, 'tensor_ru-header-h2') and contains(@class, 'tensor_ru-About__block-title') and text()='Работаем']")
+    IMG = (By.XPATH, "//img[contains(@class, 'tensor_ru-About__block3-image') and contains(@class, 'new_lazy') and contains(@class, 'loaded')]")
+
+
 
 class SbisPage(BasePage):
 
@@ -36,6 +39,19 @@ class SbisPage(BasePage):
     
     def find_working_block(self):
         return self.find_element(SbisLocators.WORKING_BLOCK)
+
+    
+    def check_img(self):
+        working_block = self.find_element(SbisLocators.WORKING_BLOCK)
+        self.driver.execute_script("arguments[0].scrollIntoView();", working_block)
+        imgs = self.find_elements(SbisLocators.IMG, time=200)
+        width = []
+        hight = []
+        for img in imgs:
+            width.append(img.size['width'])
+            hight.append(img.size['height'])
+        return all(i == width[0] for i in width) and all(i == hight[0] for i in hight)
+        
 
     
 
