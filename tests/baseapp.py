@@ -14,10 +14,9 @@ class BasePage:
 
     def go_to_page(self):
         return self.driver.get(self.url)
-    
+
+
     def find_element(self, locator, time=10):
-        return WebDriverWait(self.driver, time).until(
-    EC.visibility_of_element_located(locator)
-)
+        return WebDriverWait(self.driver, time).until(EC.visibility_of_element_located(locator))
     
 
