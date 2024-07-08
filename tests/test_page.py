@@ -25,6 +25,10 @@ def test_scenario_number_one(browser):
 
 def test_scenario_number_two(browser):
     logger.info("Тест сценария No2")
+    sbis_page = SbisPage(browser)
+    sbis_page.go_to_page()
+    sbis_page.click_button_contacts()
+    
 
     
 
