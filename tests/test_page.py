@@ -11,7 +11,13 @@ def test_click_button(browser):
     time.sleep(5)
     sbis_page.click_tenzor_banner()
     time.sleep(5)
-    # sbis_page.go_to_new_page()
+    sbis_page.go_to_new_page()
+    time.sleep(5)
+    text = sbis_page.find_sila_v_ludiah()
+    assert text == 'Сила в людях'
+    sbis_page.click_tenzor_about()
+    time.sleep(5)
+    
     
 
 
