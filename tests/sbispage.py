@@ -6,6 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class SbisLocators:
     LOCATOR_BUTTON_CONTACTS = (By.CSS_SELECTOR, "a[href='/contacts']")
+    TENZOR_BANNER = (By.CSS_SELECTOR, "a[href='https://tensor.ru/']")
+    SILA_V_LUDIAH = (By.XPATH, "//p[contains(@class, 'tensor_ru-Index__card-title') and contains(@class, 'tensor_ru-pb-16') and contains(text(), 'Сила в людях')]")
 
 
 class SbisPage(BasePage):
@@ -14,13 +16,19 @@ class SbisPage(BasePage):
         super().__init__(driver, url="https://sbis.ru")
 
     def click_button_contacts(self):
-        # element = self.driver.find_element(*SbisLocators.LOCATOR_BUTTON_CONTACTS)
-        # element.click()
-        # ActionChains(self.driver).move_to_element(element).click()
-        # self.driver.implicitly_wait(10)
-        wait = WebDriverWait(self.driver, 10)
-        elem = wait.until(EC.element_to_be_clickable(SbisLocators.LOCATOR_BUTTON_CONTACTS ))
-        elem.click()
+        return self.find_element(SbisLocators.LOCATOR_BUTTON_CONTACTS).click()
+    
+    def click_tenzor_banner(self):
+        return self.find_element(SbisLocators.TENZOR_BANNER).click()
+    
+    def go_to_new_page(self):
+        new = self.driver.window_handles
+        print(new, "ALL HANDLES")
+        self.driver.switch_to.window(new[-1])
+
+
+
+
         
 
         
