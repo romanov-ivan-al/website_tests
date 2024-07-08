@@ -4,7 +4,7 @@ from selenium import webdriver
 import time
 
 
-def test_click_button(browser):
+def test_scenario_number_one(browser):
     sbis_page = SbisPage(browser)
     sbis_page.go_to_page()
     sbis_page.click_button_contacts()
@@ -16,10 +16,13 @@ def test_click_button(browser):
     text = sbis_page.find_sila_v_ludiah()
     assert text == 'Сила в людях'
     sbis_page.click_tenzor_about()
+    time.sleep(5)
     assert "https://tensor.ru/about" in sbis_page.driver.current_url
     time.sleep(5)
+    element = sbis_page.find_working_block()
+    text = element.text
+    assert text == 'Работаем'
+
     
     
-
-
     

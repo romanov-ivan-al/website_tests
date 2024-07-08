@@ -9,6 +9,7 @@ class SbisLocators:
     TENZOR_BANNER = (By.CSS_SELECTOR, "a[href='https://tensor.ru/']")
     SILA_V_LUDIAH = (By.XPATH, "//p[contains(@class, 'tensor_ru-Index__card-title') and contains(@class, 'tensor_ru-pb-16') and contains(text(), 'Сила в людях')]")
     TENZOR_ABOUT = (By.CSS_SELECTOR, "a[href='/about'].tensor_ru-link.tensor_ru-Index__link")
+    WORKING_BLOCK = (By.XPATH, "//h2[contains(@class, 'tensor_ru-header-h2') and contains(@class, 'tensor_ru-About__block-title') and text()='Работаем']")
 
 class SbisPage(BasePage):
 
@@ -32,6 +33,9 @@ class SbisPage(BasePage):
         element = self.find_element(SbisLocators.TENZOR_ABOUT)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
         return element.click()
+    
+    def find_working_block(self):
+        return self.find_element(SbisLocators.WORKING_BLOCK)
 
     
 
