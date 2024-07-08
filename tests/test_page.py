@@ -16,6 +16,7 @@ def test_click_button(browser):
     text = sbis_page.find_sila_v_ludiah()
     assert text == 'Сила в людях'
     sbis_page.click_tenzor_about()
+    assert "https://tensor.ru/about" in sbis_page.driver.current_url
     time.sleep(5)
     
     
