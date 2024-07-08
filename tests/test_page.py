@@ -2,9 +2,11 @@ from baseapp import BasePage
 from sbispage import SbisPage, SbisLocators
 from selenium import webdriver
 import time
+from loguru import logger
 
 
 def test_scenario_number_one(browser):
+    logger.add("scenario_one.log", rotation="500 MB") 
     sbis_page = SbisPage(browser)
     sbis_page.go_to_page()
     sbis_page.click_button_contacts()
