@@ -37,7 +37,7 @@ class SbisLocators:
     )
 
     DOWNLOAD_LOCAL_VERSION = ( By.CSS_SELECTOR, 'a[href="/download"].sbisru-Footer__link')
-
+    PLAGIN_WINDOWS = (By.CSS_SELECTOR, "a.sbis_ru-DownloadNew-loadLink__link")
 
 class SbisPage(BasePage):
 
@@ -108,3 +108,10 @@ class SbisPage(BasePage):
         element = self.find_element(SbisLocators.DOWNLOAD_LOCAL_VERSION)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
         return element.click()
+    
+    def get_size_plagin_from_site(self):
+        element = self.find_element(SbisLocators.PLAGIN_WINDOWS)
+        return element.text.split()[2]
+    
+    def click_download_plagin(self):
+        return self.find_element(SbisLocators.PLAGIN_WINDOWS).click()

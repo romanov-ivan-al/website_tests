@@ -1,6 +1,7 @@
 from sbispage import SbisPage
 import time
 from loguru import logger
+from download_file import get_size_download_file
 
 logger.add("file.log", rotation="500 MB")
 
@@ -50,4 +51,10 @@ def test_scenario_number_three(browser):
     sbis_page = SbisPage(browser)
     sbis_page.go_to_page()
     sbis_page.click_download_local_version()
+    Mb_plagin = sbis_page.get_size_plagin_from_site()
+    logger.info(f"Размер плагина: {Mb_plagin} МБ")
     time.sleep(5)
+    sbis_page.click_download_plagin()
+    time.sleep(5)
+    assert get_size_download_file() == Mb_plagin
+    
