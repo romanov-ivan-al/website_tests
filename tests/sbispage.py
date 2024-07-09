@@ -11,7 +11,7 @@ class SbisLocators:
     TENZOR_ABOUT = (By.CSS_SELECTOR, "a[href='/about'].tensor_ru-link.tensor_ru-Index__link")
     WORKING_BLOCK = (By.XPATH, "//h2[contains(@class, 'tensor_ru-header-h2') and contains(@class, 'tensor_ru-About__block-title') and text()='Работаем']")
     IMG = (By.XPATH, "//img[contains(@class, 'tensor_ru-About__block3-image') and contains(@class, 'new_lazy') and contains(@class, 'loaded')]")
-
+    LOCATION = (By.CSS_SELECTOR, "div.sbisru-Contacts-City__item-name.sbisru-link.pr-4.pr-xm-8.sbisru-text-main")
 
 
 class SbisPage(BasePage):
@@ -60,6 +60,12 @@ class SbisPage(BasePage):
             hight.append(img.size['height'])
             logger.info(f"Проверка размеров изображения: {img.size['width']}, {img.size['height']}")
         return all(i == width[0] for i in width) and all(i == hight[0] for i in hight)
+    
+
+    def find_location(self):
+        logger.info("Нахождение элемента 'Регион'")
+        return self.find_element(SbisLocators.LOCATION)
+        
         
 
     

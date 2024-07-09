@@ -28,6 +28,9 @@ def test_scenario_number_two(browser):
     sbis_page = SbisPage(browser)
     sbis_page.go_to_page()
     sbis_page.click_button_contacts()
+    assert "Новосибирск" == sbis_page.find_location().text
+    
+    
     
 
     
