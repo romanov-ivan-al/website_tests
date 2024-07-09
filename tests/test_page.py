@@ -57,4 +57,3 @@ def test_scenario_number_three(browser):
     sbis_page.click_download_plagin()
     time.sleep(5)
     assert get_size_download_file() == Mb_plagin
-    
