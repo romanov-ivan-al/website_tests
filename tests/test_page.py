@@ -43,3 +43,11 @@ def test_scenario_number_two(browser):
     sbis_page.click_kamchtka_region()
     time.sleep(10)  # это не очень хорошая практика, но пока так
     assert "Петропавловск-Камчатский" == sbis_page.find_location().text
+
+
+def test_scenario_number_three(browser):
+    logger.info("ЗАПУСК СЦЕНАРИЯ N3")
+    sbis_page = SbisPage(browser)
+    sbis_page.go_to_page()
+    sbis_page.click_download_local_version()
+    time.sleep(5)
