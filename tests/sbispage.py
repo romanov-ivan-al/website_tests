@@ -12,7 +12,9 @@ class SbisLocators:
     WORKING_BLOCK = (By.XPATH, "//h2[contains(@class, 'tensor_ru-header-h2') and contains(@class, 'tensor_ru-About__block-title') and text()='Работаем']")
     IMG = (By.XPATH, "//img[contains(@class, 'tensor_ru-About__block3-image') and contains(@class, 'new_lazy') and contains(@class, 'loaded')]")
     LOCATION = (By.CSS_SELECTOR, "div.sbisru-Contacts-City__item-name.sbisru-link.pr-4.pr-xm-8.sbisru-text-main")
-
+    CONTACTS = (By.CSS_SELECTOR, ".sbisru-Contacts-List__name.sbisru-Contacts-List--ellipsis.sbisru-Contacts__text--md.pb-4.pb-xm-12.pr-xm-32")
+    REGION = (By.CSS_SELECTOR, "span.sbis_ru-Region-Chooser__text.sbis_ru-link")
+    KAMCHTKA_REGION = (By.XPATH, "//li[@class='sbis_ru-Region-Panel__item' and .//span[text()='41 Камчатский край']]")
 
 class SbisPage(BasePage):
 
@@ -63,9 +65,23 @@ class SbisPage(BasePage):
     
 
     def find_location(self):
-        logger.info("Нахождение элемента 'Регион'")
+        logger.info("Нахождение элемента c названием региона")
         return self.find_element(SbisLocators.LOCATION)
-        
+
+
+    def find_contacts(self):
+        contacts = self.find_elements(SbisLocators.CONTACTS)
+        return [i.text for i in contacts]
+    
+    
+    def click_region(self):
+        logger.info("Нажатие на ссылку 'Регион'")
+        return self.find_element(SbisLocators.REGION).click()
+    
+    def click_kamchtka_region(self):
+        logger.info("Нажатие на ссылку 'Камчатка'")
+        return self.find_element(SbisLocators.KAMCHTKA_REGION).click()
+
         
 
     
